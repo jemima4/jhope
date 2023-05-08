@@ -22,4 +22,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: username/rm:latest
+          tags: theola4/rm:latest
