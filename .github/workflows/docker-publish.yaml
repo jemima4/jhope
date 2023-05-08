@@ -1,26 +1,21 @@
-name: Docker Image Workflow
+name: Push Docker image to Docker Hub
 on:
   push:
     branches:
       - master
 jobs:
-  build-and-push:
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  push:
     runs-on: ubuntu-latest
-  job:
-      steps:
-        - uses: actions/checkout@v2
-        - name: Login to Docker Hub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        - name: Build and push Docker image
-          uses: docker/build-push-action@v2
-          with:
-            context: .
-            push: true
-            tags: username/repository:latest
-
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: username/repository:latest
