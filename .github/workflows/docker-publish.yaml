@@ -2,7 +2,7 @@ name: Push Docker image to Docker Hub
 on:
   push:
     branches:
-      - master
+      - ma
 jobs:
   push:
     runs-on: ubuntu-latest
